@@ -1,10 +1,46 @@
+# Descrpition
+
 A static Array is a contiguous chunk of memory.
 
-The static Array's size is fixed in place and thus the removal/insertion of new elements is impossible.
+The static Array's size is fixed in place and thus the removal/insertion of new elements is impossible. The main advantage of a static array is the constant time needed for random access. This, however, restricts all elements in the array to be the same size in memory. To store different data types in a static array, some sort of type-union is necessary.
 
-## Operations
+# Main Interface
 
-| Get    | int Index            | Returns the element at the specified position of the Array                     |
-| ------ | -------------------- | ------------------------------------------------------------------------------ |
-| Set    | Int Index, any Value | Sets the element at the specified position of the Array to the specified Value |
-| Length |                      | Returns the length of the List                                                 |
+-   get index
+-   set index value
+
+# Implementation
+
+...
+
+# Properties
+
+| Name     | Implementation |
+| -------- | -------------- |
+| Ordered  | Yes            |
+| Iterable | Yes            |
+| Sorted   | No             |
+| Unique   | No             |
+
+# Operations
+
+Every data structure implemeted here will be judged by its implementation of the following operations and their associated time & space complexity.
+
+| Name          | Big O | Aliases | Notes |
+| ------------- | ----- | ------- | ----- |
+| Instance      | -     | -       | -     |
+| Copy          | O(n)  | -       | -     |
+| Free          | -     | -       | -     |
+| Peek          | O(1)  | -       | -     |
+| Random Access | O(1)  | -       | -     |
+| Push          | -     | -       | -     |
+| Insert        | -     | -       | -     |
+| Pop           | -     | -       | -     |
+| Remove        | -     | -       | -     |
+| Contains      | O(n)  | -       | -     |
+| IndexOf       | O(n)  | -       | -     |
+| Find          | O(n)  | -       | -     |
+| Map           | O(n)  | -       | -     |
+| Filter        | O(n)  | -       | -     |
+| Reduce        | O(n)  | -       | -     |
+| Length        | O(1)  | -       | -     |

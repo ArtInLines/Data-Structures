@@ -6,7 +6,7 @@
 
 ...
 
-# Implementation
+# Main Implementation
 
 ...
 
@@ -14,10 +14,10 @@
 
 | Name     | Implementation |
 | -------- | -------------- |
+| Iterable | ...            |
 | Ordered  | ...            |
 | Sorted   | ...            |
 | Unique   | ...            |
-| Iterable | ...            |
 
 # Operations
 
@@ -25,19 +25,20 @@ Every data structure implemeted here will be judged by its implementation of the
 
 | Name          | Big O | Aliases | Notes |
 | ------------- | ----- | ------- | ----- |
-| Instance      | ...   | ...     | ...   |
-| Copy          | ...   | ...     | ...   |
-| Free          | ...   | ...     | ...   |
-| Peek          | ...   | ...     | ...   |
-| Random Access | ...   | ...     | ...   |
-| Push          | ...   | ...     | ...   |
-| Insert        | ...   | ...     | ...   |
-| Pop           | ...   | ...     | ...   |
-| Remove        | ...   | ...     | ...   |
-| Contains      | ...   | ...     | ...   |
-| IndexOf       | ...   | ...     | ...   |
-| Find          | ...   | ...     | ...   |
-| Map           | ...   | ...     | ...   |
-| Filter        | ...   | ...     | ...   |
-| Reduce        | ...   | ...     | ...   |
-| Length        | ...   | ...     | ...   |
+| Instance      | -     | -       | -     |
+| Copy          | -     | -       | -     |
+| Free          | -     | -       | -     |
+| Peek          | -     | -       | -     |
+| Random Access | -     | -       | -     |
+| Set Element   | -     | -       | -     |
+| Push          | -     | -       | -     |
+| Insert        | -     | -       | -     |
+| Pop           | -     | -       | -     |
+| Remove        | -     | -       | -     |
+| Contains      | -     | -       | -     |
+| IndexOf       | -     | -       | -     |
+| Find          | -     | -       | -     |
+| Map           | -     | -       | -     |
+| Filter        | -     | -       | -     |
+| Reduce        | -     | -       | -     |
+| Length        | -     | -       | -     |
