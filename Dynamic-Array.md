@@ -1,14 +1,46 @@
+# Descrpition
+
 A dynamic Array is a contiguous chunk of memory, with the ability to change its size.
 
-This specification of a dynamic Array has to be implemented using static Arrays.
+This specification of a dynamic Array is implemented using static Arrays. Thus, random access is stil guaranteed, as well as the ability to increase/decrease in size.
 
-## Operations
+# Interface
 
-| Get      | int Index              | Returns the element at the specified position of the Array                       |
-| -------- | ---------------------- | -------------------------------------------------------------------------------- |
-| Set      | int Index, any Element | Sets the element at the specified position of the Array to the specified Element |
-| Length   | -                      | Returns the length of the List                                                   |
-| Insert   | int Index, any Element | Inserts the specified Element at the specified Index                             |
-| RemoveAt | int Index              | Removes and returns an element at the specifed Index                             |
-| Push     | any Element            | Adds the specified Element to the end of the Array                               |
-| Pop      | -                      | Removes and returns the last element of the Array                                |
+-   normal Array interface
+
+# Main Implementation
+
+Dynamic Arrays are Static Arrays, that can, when needed, increase or decrease in size. To do this, a new static array with a bigger/smaller length is created, which then gets all values of the old array copied into.
+
+# Properties
+
+| Name     | Implementation |
+| -------- | -------------- |
+| Iterable | Yes            |
+| Ordered  | Yes            |
+| Sorted   | No             |
+| Unique   | No             |
+
+# Operations
+
+Every data structure implemeted here will be judged by its implementation of the following operations and their associated time & space complexity.
+
+| Name          | Big O | Aliases | Notes |
+| ------------- | ----- | ------- | ----- |
+| Instance      | -     | -       | -     |
+| Copy          | O(n)  | -       | -     |
+| Free          | -     | -       | -     |
+| Peek          | O(1)  | -       | -     |
+| Random Access | O(1)  | -       | -     |
+| Set Element   | O(1)  | -       | -     |
+| Push          | O(n)  | -       | -     |
+| Insert        | O(n)  | -       | -     |
+| Pop           | O(n)  | -       | -     |
+| Remove        | O(n)  | -       | -     |
+| Contains      | O(n)  | -       | -     |
+| IndexOf       | O(n)  | -       | -     |
+| Find          | O(n)  | -       | -     |
+| Map           | O(n)  | -       | -     |
+| Filter        | O(n)  | -       | -     |
+| Reduce        | O(n)  | -       | -     |
+| Length        | O(1)  | -       | -     |

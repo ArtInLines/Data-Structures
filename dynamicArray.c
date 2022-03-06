@@ -1,5 +1,6 @@
 #include <stdlib.h>
-#include "dynamicArray.h";
+#include "element.h"
+#include "dynamicArray.h"
 
 // For typedefs see header file
 
@@ -9,6 +10,10 @@ dynamicArr *dynamicArray(int length) {
     arr->capacity = length;
     arr->list = malloc((length+1) * sizeof(element));
     return arr;
+}
+
+element peek(dynamicArr *arr) {
+    return get(arr, 0);
 }
 
 element get(dynamicArr *arr, int index) {
@@ -69,4 +74,59 @@ element pop(dynamicArr *arr) {
     element el = arr->list[arr->len-1];
     removeAt(arr, arr->len-1);
     return el;
+}
+
+int contains(dynamicArr *arr, element el) {
+    for (int i = 0; i < arr->len; i++) {
+        if (cmpEl(arr->list[i], el)) return 1;
+    }
+    return 0;
+}
+
+int indexOf(dynamicArr *arr, element el) {
+    for (int i = 0; i < arr->len; i++) {
+        if (cmpEl(arr->list[i], el)) return i;
+    }
+    return -1;
+}
+
+int findIndexOf(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
+    for (int i = 0; i < arr->len; i++) {
+        if (fn(arr->list[i], i, arr)) return i;
+    }
+    return -1;
+}
+
+element *find(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
+    for (int i = 0; i < arr->len; i++) {
+        if (fn(arr->list[i], i, arr)) return &arr->list[i];
+    }
+    return NULL;
+}
+
+dynamicArr *map(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
+    for (int i = 0; i < arr->len; i++) {
+        arr->list[i] = fn(arr->list[i], i, arr);
+    }
+    return arr;
+}
+
+dynamicArr *immutableMap(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
+    dynamicArr *newArr = dynamicArray(arr->len);
+    for (int i = 0; i < arr->len; i++) {
+        newArr->list[i] = fn(arr->list[i], i, arr);
+    }
+    return newArr;
+}
+
+dynamicArr *filter(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
+    // TODO
+}
+
+element reduce(dynamicArr *arr, element (*fn) (element, element, int, dynamicArr*)) {
+    // TODO
+}
+
+void *fullReduce(dynamicArr *arr, void* (*firstEl) (element, int, dynamicArr*), void* (*fn) (element, element, int, dynamicArr*)) {
+    // TODO
 }
