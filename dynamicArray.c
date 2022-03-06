@@ -37,7 +37,7 @@ dynamicArr *removeAt(dynamicArr *arr, int index) {
         for (i = index; i < arr->len; i++) newArr->list[i] = arr->list[i+1];
         
         free(arr->list);
-        free(&arr);
+        free(arr);
         return newArr;
     } else {
         for (int i = index; i < arr->len; i++) arr->list[i] = arr->list[i+1];
@@ -61,7 +61,7 @@ dynamicArr *insert(dynamicArr *arr, int index, element el) {
         for (i = index; i < arr->len; i++) newArr->list[i+1] = arr->list[i];
         
         free(arr->list);
-        free(&arr);
+        free(arr);
         return newArr;
     }
 }
@@ -78,14 +78,14 @@ element pop(dynamicArr *arr) {
 
 int contains(dynamicArr *arr, element el) {
     for (int i = 0; i < arr->len; i++) {
-        if (cmpEl(arr->list[i], el)) return 1;
+        if (cmpElements(arr->list[i], el)) return 1;
     }
     return 0;
 }
 
 int indexOf(dynamicArr *arr, element el) {
     for (int i = 0; i < arr->len; i++) {
-        if (cmpEl(arr->list[i], el)) return i;
+        if (cmpElements(arr->list[i], el)) return i;
     }
     return -1;
 }

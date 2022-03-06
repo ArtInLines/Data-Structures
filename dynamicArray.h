@@ -24,10 +24,6 @@ element pop(dynamicArr *arr);
 
 element peek(dynamicArr *arr);
 
-element get(dynamicArr *arr, int index) {
-    return arr->list[index];
-}
-
 int contains(dynamicArr *arr, element el);
 
 int indexOf(dynamicArr *arr, element el);

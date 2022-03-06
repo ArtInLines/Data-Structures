@@ -1,5 +1,6 @@
-typedef struct statArr {
+typedef struct staticArr {
     int len;
+    int capacity;
     element* list;
 } staticArr;
 
@@ -7,34 +8,40 @@ typedef struct statArr {
 
 // Functions declared in C-File
 
-staticArr *staticArray(int length);
+staticArr *statArr_new(int length);
 
-staticArr *copyArr(staticArr *arr);
+staticArr *statArr_init(int length, element *elements);
 
-void freeArr(staticArr *arr);
+staticArr *statArr_copyArr(staticArr *arr);
 
-element peek(staticArr *arr);
+void statArr_free(staticArr *arr);
 
-element get(staticArr *arr, int index);
+element statArr_peek(staticArr *arr);
 
-void set(staticArr *arr, int index, element newValue);
+element statArr_get(staticArr *arr, int index);
 
-int length(staticArr *arr);
+void statArr_set(staticArr *arr, int index, element newValue);
 
-int contains(staticArr *arr, element el);
+int statArr_length(staticArr *arr);
 
-element *find(staticArr *arr, int (*fn) (element, int, staticArr*));
+int statArr_recalcLength(staticArr *arr);
 
-int findIndex(staticArr *arr, element el, int (*fn) (element, int, staticArr*));
+int statArr_contains(staticArr *arr, element el);
 
-int findIndexOf(staticArr *arr, element el);
+element *statArr_find(staticArr *arr, int (*fn) (element, int, staticArr*));
 
-staticArr *map(staticArr *arr, element (*fn) (element, int, staticArr*));
+int statArr_findIndex(staticArr *arr, element el, int (*fn) (element, int, staticArr*));
 
-staticArr *immutableMap(staticArr *arr, element (*fn) (element, int, staticArr*));
+int statArr_findIndexOf(staticArr *arr, element el);
 
-staticArr *filter(staticArr *arr, int (*fn) (element, int, staticArr*));
+staticArr *statArr_map(staticArr *arr, element (*fn) (element, int, staticArr*));
 
-void *fullReduce(staticArr *arr, void* (*firstEl) (element, int, staticArr*), void* (*fn) (void*, element, int, staticArr*));
+staticArr *statArr_immutableMap(staticArr *arr, element (*fn) (element, int, staticArr*));
 
-element reduce(staticArr *arr, element (*fn) (element, element, int, staticArr*));
+staticArr *statArr_filter(staticArr *arr, int (*fn) (element, int, staticArr*));
+
+staticArr *statArr_immutableFilter(staticArr *arr, int (*fn) (element, int, staticArr*));
+
+void *statArr_fullReduce(staticArr *arr, void* (*firstEl) (element, int, staticArr*), void* (*fn) (void*, element, int, staticArr*));
+
+element statArr_reduce(staticArr *arr, element (*fn) (element, element, int, staticArr*));

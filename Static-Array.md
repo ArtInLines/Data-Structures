@@ -26,21 +26,21 @@ The static Array's size is fixed in place and thus the removal/insertion of new 
 
 Every data structure implemeted here will be judged by its implementation of the following operations and their associated time & space complexity.
 
-| Name          | Big O | Aliases | Notes |
-| ------------- | ----- | ------- | ----- |
-| Instance      | -     | -       | -     |
-| Copy          | O(n)  | -       | -     |
-| Free          | -     | -       | -     |
-| Peek          | O(1)  | -       | -     |
-| Random Access | O(1)  | -       | -     |
-| Push          | -     | -       | -     |
-| Insert        | -     | -       | -     |
-| Pop           | -     | -       | -     |
-| Remove        | -     | -       | -     |
-| Contains      | O(n)  | -       | -     |
-| IndexOf       | O(n)  | -       | -     |
-| Find          | O(n)  | -       | -     |
-| Map           | O(n)  | -       | -     |
-| Filter        | O(n)  | -       | -     |
-| Reduce        | O(n)  | -       | -     |
-| Length        | O(1)  | -       | -     |
+| Name          | Time / Space Complexity | Aliases | Notes                                         |
+| ------------- | ----------------------- | ------- | --------------------------------------------- |
+| Instance      | -                       | -       | -                                             |
+| Copy          | O(n)                    | -       | -                                             |
+| Free          | -                       | -       | -                                             |
+| Peek          | O(1)                    | -       | -                                             |
+| Random Access | O(1)                    | -       | -                                             |
+| Push          | O(1)                    | -       | Only possible, if there's still space avaible |
+| Insert        | O(n)                    | -       | Only possible, if there's still space avaible |
+| Pop           | O(1)                    | -       | -                                             |
+| Remove        | O(n)                    | -       | -                                             |
+| Contains      | O(n)                    | -       | -                                             |
+| IndexOf       | O(n)                    | -       | -                                             |
+| Find          | O(n)                    | -       | -                                             |
+| Map           | O(n)                    | -       | -                                             |
+| Filter        | O(n)                    | -       | -                                             |
+| Reduce        | O(n)                    | -       | -                                             |
+| Length        | O(1)                    | -       | Recalculating the length takes O(n)           |

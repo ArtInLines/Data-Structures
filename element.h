@@ -1,7 +1,10 @@
 typedef struct element {
-    char data;
+    int data;
 } element;
 
-// TODO: Add null_el
 
-int cmpEl(element el1, element el2);
+element getNullEL();
+
+int isInvalidEl(element el);
+
+int cmpElements(element el1, element el2);
