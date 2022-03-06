@@ -1,15 +1,10 @@
-#include <stdlib.h>
-
-typedef struct element {
-    char data;
-} element;
-
 typedef struct dynamicArr {
     int len;
     int capacity;
     element* list;
 } dynamicArr;
 
+// Functions defined in C-File
 
 dynamicArr *dynamicArray(int length);
 

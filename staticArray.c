@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "element.h"
 #include "staticArray.h";
 
 // For typedefs see header file

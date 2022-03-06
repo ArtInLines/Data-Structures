@@ -1,18 +1,8 @@
-typedef struct el {
-    char data;
-} element;
-
 typedef struct statArr {
     int len;
     element* list;
 } staticArr;
 
-int cmpElements(element el1, element el2) {
-    if (el1.data == el2.data) return 1;
-    else return 0;
-};
-
-// TODO: Add null_el
 // TODO: Add dynamic length attribute
 
 // Functions declared in C-File
