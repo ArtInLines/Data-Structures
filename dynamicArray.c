@@ -78,14 +78,14 @@ element pop(dynamicArr *arr) {
 
 int contains(dynamicArr *arr, element el) {
     for (int i = 0; i < arr->len; i++) {
-        if (cmpElements(arr->list[i], el)) return 1;
+        if (El_eq(&arr->list[i], &el)) return 1;
     }
     return 0;
 }
 
 int indexOf(dynamicArr *arr, element el) {
     for (int i = 0; i < arr->len; i++) {
-        if (cmpElements(arr->list[i], el)) return i;
+        if (El_eq(&arr->list[i], &el)) return i;
     }
     return -1;
 }

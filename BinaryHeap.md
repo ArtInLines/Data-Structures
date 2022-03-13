@@ -6,16 +6,16 @@ See https://en.wikipedia.org/wiki/Binary_heap and https://en.wikipedia.org/wiki/
 
 # Main Implementation
 
-...
+This implementation uses a dynamic array and implements a binary _min_ heap.
 
 # Properties
 
 | Name     | Implementation |
 | -------- | -------------- |
-| Iterable | ...            |
-| Ordered  | ...            |
-| Sorted   | ...            |
-| Unique   | ...            |
+| Iterable | Yes            |
+| Ordered  | Yes            |
+| Sorted   | Yes            |
+| Unique   | No             |
 
 # Operations
 
