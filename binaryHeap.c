@@ -5,6 +5,7 @@
 #include "binaryHeap.h"
 
 // See https://en.wikipedia.org/wiki/Heap_(data_structure)#Implementation for many explanations
+// as well as https://youtu.be/RBSGKlAvoiM?t=5492
 
 element binHeap_peek(binaryHeap *A) {
     return dynArr_get(A, 0);
