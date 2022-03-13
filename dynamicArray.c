@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "element.h"
 #include "dynamicArray.h"
 
@@ -6,9 +7,9 @@
 
 dynamicArr *dynArr_new(int length) {
     dynamicArr *arr = malloc(sizeof(dynamicArr));
-    arr->len = length;
-    arr->capacity = length;
-    arr->list = malloc((length+1) * sizeof(element));
+    arr->len = 0;
+    arr->capacity = length <= 0 ? 1 : length;
+    arr->list = malloc((arr->capacity) * sizeof(element));
     return arr;
 }
 
@@ -32,51 +33,59 @@ int dynArr_length(dynamicArr *arr) {
     return arr->len;
 }
 
-dynamicArr *dynArr_removeAt(dynamicArr *arr, int index) {
-    arr->len--;
-    if (arr->capacity >= 2 * arr->len) {
-        dynamicArr *newArr = dynArr_new(arr->len);
+dynamicArr *dynArr_removeAt(dynamicArr **A, int index) {
+    dynamicArr *arr = *A;
+    if (arr->capacity >= 2 * (arr->len - 1)) {
+        dynamicArr *tmp = arr;
+        *A = dynArr_new(arr->len - 1);
+        arr = *A;
+        arr->len = tmp->len - 1;
+
         int i;
-        for (i = 0; i < index; i++) newArr->list[i] = arr->list[i];
-        for (i = index; i < arr->len; i++) newArr->list[i] = arr->list[i+1];
-        
-        free(arr->list);
-        free(arr);
-        return newArr;
+        for (i = 0; i < index; i++) arr->list[i] = tmp->list[i];
+        for (i = index; i < tmp->len; i++) arr->list[i] = tmp->list[i+1];
+
+        free(tmp->list);
+        free(tmp);
+        return arr;
     } else {
+        arr->len--;
         for (int i = index; i < arr->len; i++) arr->list[i] = arr->list[i+1];
         return arr;
     }
 }
 
-dynamicArr *dynArr_insert(dynamicArr *arr, int index, element el) {
+dynamicArr *dynArr_insert(dynamicArr **A, int index, element el) {
+    dynamicArr *arr = *A;
     if (arr->capacity > arr->len) {
         arr->len++;
-        for (int i = index; i < arr->len; i++) arr->list[i+1] = arr->list[i];
+        for (int i = arr->len-1; i > index; i--) arr->list[i] = arr->list[i-1];
         arr->list[index] = el;
         return arr;
-    } else {   
-        dynamicArr *newArr = malloc(sizeof(dynamicArr));
-        newArr->capacity = arr->capacity * 2;
-        newArr->len = arr->len+1;
-        int i;
-        for (i = 0; i < index; i++) newArr->list[i] = arr->list[i];
-        newArr->list[index] = el;
-        for (i = index; i < arr->len; i++) newArr->list[i+1] = arr->list[i];
+    } else {
+        dynamicArr *tmp = arr;
+        *A = dynArr_new(arr->capacity * 2);
+        arr = *A;
+        arr->len = tmp->len+1;
         
-        free(arr->list);
-        free(arr);
-        return newArr;
+        int i;
+        for (i = tmp->len; i > index; i--) arr->list[i] = tmp->list[i-1];
+        arr->list[index] = el;
+        for (i = index-1; i >= 0; i--) arr->list[i] = tmp->list[i];
+        
+        free(tmp->list);
+        free(tmp);
+        return arr;
     }
 }
 
-dynamicArr *dynArr_push(dynamicArr *arr, element el) {
-    return insert(arr, arr->len, el);
+dynamicArr *dynArr_push(dynamicArr **arr, element el) {
+    return dynArr_insert(arr, (*arr)->len, el);
 }
 
-element dynArr_pop(dynamicArr *arr) {
-    element el = arr->list[arr->len-1];
-    dynArr_removeAt(arr, arr->len-1);
+element dynArr_pop(dynamicArr **arr) {
+    element el = (*arr)->list[(*arr)->len-1];
+    dynArr_removeAt(arr, (*arr)->len - 1);
     return el;
 }
 
@@ -108,22 +117,22 @@ element *dynArr_find(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
     return NULL;
 }
 
-dynamicArr *dynArr_map(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
-    for (int i = 0; i < arr->len; i++) {
-        arr->list[i] = fn(arr->list[i], i, arr);
+dynamicArr *dynArr_map(dynamicArr **arr, element (*fn) (element, int, dynamicArr*)) {
+    for (int i = 0; i < (*arr)->len; i++) {
+        (*arr)->list[i] = fn((*arr)->list[i], i, *arr);
     }
-    return arr;
+    return *arr;
 }
 
-dynamicArr *dynArr_immutableMap(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
-    dynamicArr *newArr = dynArr_new(arr->len);
-    for (int i = 0; i < arr->len; i++) {
-        newArr->list[i] = fn(arr->list[i], i, arr);
+dynamicArr *dynArr_immutableMap(dynamicArr **arr, element (*fn) (element, int, dynamicArr*)) {
+    dynamicArr *newArr = dynArr_new((*arr)->len);
+    for (int i = 0; i < (*arr)->len; i++) {
+        newArr->list[i] = fn((*arr)->list[i], i, *arr);
     }
     return newArr;
 }
 
-dynamicArr *dynArr_filter(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
+dynamicArr *dynArr_filter(dynamicArr **arr, int (*fn) (element, int, dynamicArr*)) {
     // TODO
 }
 
@@ -133,4 +142,24 @@ element dynArr_reduce(dynamicArr *arr, element (*fn) (element, element, int, dyn
 
 void *dynArr_fullReduce(dynamicArr *arr, void* (*firstEl) (element, int, dynamicArr*), void* (*fn) (element, element, int, dynamicArr*)) {
     // TODO
+}
+
+// Stringify
+
+int dynArr_stringifyCapacity(dynamicArr *arr) {
+    return (El_stringifyCapacity() + 2) * arr->len + 1;
+}
+
+int dynArr_stringify(dynamicArr *arr, char *s) {
+    int i, formatVal, capacity = dynArr_stringifyCapacity(arr);
+    char elS[10];
+    
+    El_stringify(dynArr_getRef(arr, 0), s);
+    
+    for (i = 1; i < arr->len; i++) {
+        El_stringify(dynArr_getRef(arr, i), elS);
+        formatVal = sprintf(s, "%s, %s", s, elS);
+    }
+    
+    return formatVal;
 }
