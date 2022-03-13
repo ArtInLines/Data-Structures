@@ -14,7 +14,7 @@ This implementation uses a dynamic array and implements a binary _min_ heap.
 | -------- | -------------- |
 | Iterable | Yes            |
 | Ordered  | Yes            |
-| Sorted   | Yes            |
+| Sorted   | Kind of        |
 | Unique   | No             |
 
 # Operations

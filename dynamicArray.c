@@ -4,7 +4,7 @@
 
 // For typedefs see header file
 
-dynamicArr *dynamicArray(int length) {
+dynamicArr *dynArr_new(int length) {
     dynamicArr *arr = malloc(sizeof(dynamicArr));
     arr->len = length;
     arr->capacity = length;
@@ -12,26 +12,30 @@ dynamicArr *dynamicArray(int length) {
     return arr;
 }
 
-element peek(dynamicArr *arr) {
-    return get(arr, 0);
+element dynArr_peek(dynamicArr *arr) {
+    return dynArr_get(arr, 0);
 }
 
-element get(dynamicArr *arr, int index) {
+element dynArr_get(dynamicArr *arr, int index) {
     return arr->list[index];
 }
 
-void set(dynamicArr *arr, int index, element newValue) {
+element *dynArr_getRef(dynamicArr *arr, int index) {
+    return &arr->list[index];
+}
+
+void dynArr_set(dynamicArr *arr, int index, element newValue) {
     arr->list[index] = newValue;
 }
 
-int length(dynamicArr *arr) {
+int dynArr_length(dynamicArr *arr) {
     return arr->len;
 }
 
-dynamicArr *removeAt(dynamicArr *arr, int index) {
+dynamicArr *dynArr_removeAt(dynamicArr *arr, int index) {
     arr->len--;
     if (arr->capacity >= 2 * arr->len) {
-        dynamicArr *newArr = dynamicArray(arr->len);
+        dynamicArr *newArr = dynArr_new(arr->len);
         int i;
         for (i = 0; i < index; i++) newArr->list[i] = arr->list[i];
         for (i = index; i < arr->len; i++) newArr->list[i] = arr->list[i+1];
@@ -45,7 +49,7 @@ dynamicArr *removeAt(dynamicArr *arr, int index) {
     }
 }
 
-dynamicArr *insert(dynamicArr *arr, int index, element el) {
+dynamicArr *dynArr_insert(dynamicArr *arr, int index, element el) {
     if (arr->capacity > arr->len) {
         arr->len++;
         for (int i = index; i < arr->len; i++) arr->list[i+1] = arr->list[i];
@@ -66,67 +70,67 @@ dynamicArr *insert(dynamicArr *arr, int index, element el) {
     }
 }
 
-dynamicArr *push(dynamicArr *arr, element el) {
+dynamicArr *dynArr_push(dynamicArr *arr, element el) {
     return insert(arr, arr->len, el);
 }
 
-element pop(dynamicArr *arr) {
+element dynArr_pop(dynamicArr *arr) {
     element el = arr->list[arr->len-1];
-    removeAt(arr, arr->len-1);
+    dynArr_removeAt(arr, arr->len-1);
     return el;
 }
 
-int contains(dynamicArr *arr, element el) {
+int dynArr_contains(dynamicArr *arr, element el) {
     for (int i = 0; i < arr->len; i++) {
         if (El_eq(&arr->list[i], &el)) return 1;
     }
     return 0;
 }
 
-int indexOf(dynamicArr *arr, element el) {
+int dynArr_indexOf(dynamicArr *arr, element el) {
     for (int i = 0; i < arr->len; i++) {
         if (El_eq(&arr->list[i], &el)) return i;
     }
     return -1;
 }
 
-int findIndexOf(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
+int dynArr_findIndexOf(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
     for (int i = 0; i < arr->len; i++) {
         if (fn(arr->list[i], i, arr)) return i;
     }
     return -1;
 }
 
-element *find(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
+element *dynArr_find(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
     for (int i = 0; i < arr->len; i++) {
         if (fn(arr->list[i], i, arr)) return &arr->list[i];
     }
     return NULL;
 }
 
-dynamicArr *map(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
+dynamicArr *dynArr_map(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
     for (int i = 0; i < arr->len; i++) {
         arr->list[i] = fn(arr->list[i], i, arr);
     }
     return arr;
 }
 
-dynamicArr *immutableMap(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
-    dynamicArr *newArr = dynamicArray(arr->len);
+dynamicArr *dynArr_immutableMap(dynamicArr *arr, element (*fn) (element, int, dynamicArr*)) {
+    dynamicArr *newArr = dynArr_new(arr->len);
     for (int i = 0; i < arr->len; i++) {
         newArr->list[i] = fn(arr->list[i], i, arr);
     }
     return newArr;
 }
 
-dynamicArr *filter(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
+dynamicArr *dynArr_filter(dynamicArr *arr, int (*fn) (element, int, dynamicArr*)) {
     // TODO
 }
 
-element reduce(dynamicArr *arr, element (*fn) (element, element, int, dynamicArr*)) {
+element dynArr_reduce(dynamicArr *arr, element (*fn) (element, element, int, dynamicArr*)) {
     // TODO
 }
 
-void *fullReduce(dynamicArr *arr, void* (*firstEl) (element, int, dynamicArr*), void* (*fn) (element, element, int, dynamicArr*)) {
+void *dynArr_fullReduce(dynamicArr *arr, void* (*firstEl) (element, int, dynamicArr*), void* (*fn) (element, element, int, dynamicArr*)) {
     // TODO
 }
