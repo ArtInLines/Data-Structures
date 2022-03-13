@@ -6,38 +6,46 @@ typedef struct dynamicArr {
 
 // Functions defined in C-File
 
-dynamicArr *dynamicArray(int length);
+dynamicArr *dynArr_new(int length);
 
-element get(dynamicArr *arr, int index);
+element dynArr_get(dynamicArr *arr, int index);
 
-void set(dynamicArr *arr, int index, element newValue);
+element *dynArr_getRef(dynamicArr *arr, int index);
 
-int length(dynamicArr *arr);
+void dynArr_set(dynamicArr *arr, int index, element newValue);
 
-dynamicArr *removeAt(dynamicArr *arr, int index);
+int dynArr_length(dynamicArr *arr);
 
-dynamicArr *insert(dynamicArr *arr, int index, element el);
+dynamicArr *dynArr_removeAt(dynamicArr **A, int index);
 
-dynamicArr *push(dynamicArr *arr, element el);
+dynamicArr *dynArr_insert(dynamicArr **A, int index, element el);
 
-element pop(dynamicArr *arr);
+dynamicArr *dynArr_push(dynamicArr **arr, element el);
 
-element peek(dynamicArr *arr);
+element dynArr_pop(dynamicArr **arr);
 
-int contains(dynamicArr *arr, element el);
+element dynArr_peek(dynamicArr *arr);
 
-int indexOf(dynamicArr *arr, element el);
+int dynArr_contains(dynamicArr *arr, element el);
 
-int findIndexOf(dynamicArr *arr, int (*fn) (element, int, dynamicArr*));
+int dynArr_indexOf(dynamicArr *arr, element el);
 
-element *find(dynamicArr *arr, int (*fn) (element, int, dynamicArr*));
+int dynArr_findIndexOf(dynamicArr *arr, int (*fn) (element, int, dynamicArr*));
 
-dynamicArr *map(dynamicArr *arr, element (*fn) (element, int, dynamicArr*));
+element *dynArr_find(dynamicArr *arr, int (*fn) (element, int, dynamicArr*));
 
-dynamicArr *immutableMap(dynamicArr *arr, element (*fn) (element, int, dynamicArr*));
+dynamicArr *dynArr_map(dynamicArr **arr, element (*fn) (element, int, dynamicArr*));
 
-dynamicArr *filter(dynamicArr *arr, int (*fn) (element, int, dynamicArr*));
+dynamicArr *dynArr_immutableMap(dynamicArr **arr, element (*fn) (element, int, dynamicArr*));
 
-element reduce(dynamicArr *arr, element (*fn) (element, element, int, dynamicArr*));
+dynamicArr *dynArr_filter(dynamicArr **arr, int (*fn) (element, int, dynamicArr*));
 
-void *fullReduce(dynamicArr *arr, void* (*firstEl) (element, int, dynamicArr*), void* (*fn) (element, element, int, dynamicArr*));
+element dynArr_reduce(dynamicArr *arr, element (*fn) (element, element, int, dynamicArr*));
+
+void *dynArr_fullReduce(dynamicArr *arr, void* (*firstEl) (element, int, dynamicArr*), void* (*fn) (element, element, int, dynamicArr*));
+
+// Stringify
+
+int dynArr_stringifyCapacity(dynamicArr *arr);
+
+int dynArr_stringify(dynamicArr *arr, char *s);

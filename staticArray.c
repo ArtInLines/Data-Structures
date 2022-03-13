@@ -15,7 +15,7 @@ staticArr *statArr_new(int length) {
 staticArr *statArr_init(int length, element *elements) {
     staticArr *arr = statArr_new(length);
     int i = 0;
-    while (i < length && !isInvalidEl(elements[i])) {
+    while (i < length && !El_isInvalid(&elements[i])) {
         arr->list[i] = elements[i];
         i++;
     }
@@ -53,14 +53,14 @@ int statArr_length(staticArr *arr) {
 
 int statArr_recalcLength(staticArr *arr) {
     int i = 0;
-    while (i < arr->capacity && !isInvalidEl(arr->list[i])) i++;
+    while (i < arr->capacity && !El_isInvalid(&arr->list[i])) i++;
     arr->len = i;
     return arr->len;
 }
 
 int statArr_contains(staticArr *arr, element el) {
     for (int i = 0; i < arr->len; i++) {
-        if (cmpElements(arr->list[i], el)) return 1;
+        if (El_eq(&arr->list[i], &el)) return 1;
     }
     return 0;
 }
@@ -110,7 +110,7 @@ staticArr *statArr_filter(staticArr *arr, int (*fn) (element, int, staticArr*)) 
         }
     }
     arr->len = j+1;
-    arr->list[arr->len] = getNullEL();
+    arr->list[arr->len] = El_getNull();
     return arr;
 }
 
@@ -124,7 +124,7 @@ staticArr *statArr_immutableFilter(staticArr *arr, int (*fn) (element, int, stat
         }
     }
     newArr->len = j+1;
-    newArr->list[newArr->len] = getNullEL();
+    newArr->list[newArr->len] = El_getNull();
     return newArr;
 }
 
