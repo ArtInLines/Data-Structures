@@ -12,6 +12,10 @@ binaryHeap *binHeap_new(int initialCapacity) {
     return dynArr_new(initialCapacity);
 }
 
+void binHeap_free(binaryHeap *A) {
+    dynArr_free(A);
+}
+
 // TODO: Add methods to create heaps from arrays, see wikipedia site for different methods
 
 element binHeap_peek(binaryHeap *A) {
