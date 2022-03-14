@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "element.h"
-#include "util.h"
+// #include "util.h"
 #include "dynamicArray.h"
 #include "binaryHeap.h"
 
@@ -30,11 +30,11 @@ element binHeap_get(binaryHeap *A, int index) {
     return dynArr_get(A, index);
 }
 
-int binHeap_size(dynamicArr *A) {
+int binHeap_size(binaryHeap *A) {
     return dynArr_length(A);
 }
 
-int binHeap_isEmpty(dynamicArr *A) {
+int binHeap_isEmpty(binaryHeap *A) {
     return dynArr_length(A) == 0;
 }
 
@@ -131,7 +131,10 @@ int binHeap_getParentIndex(int index) {
 }
 
 void binHeap_switchPositions(binaryHeap *A, int i, int j) {
-    util_swapElements(&A->list[i], &A->list[j]);
+    // util_swapElements(&A->list[i], &A->list[j]);
+    element tmp = A->list[i];
+    A->list[i] = A->list[j];
+    A->list[j] = tmp;
 }
 
 int binHeap_contains(binaryHeap *A, element el) {

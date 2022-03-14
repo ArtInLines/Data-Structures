@@ -10,9 +10,9 @@ element binHeap_poll(binaryHeap **A);
 
 element binHeap_get(binaryHeap *A, int index);
 
-int binHeap_size(dynamicArr *A);
+int binHeap_size(binaryHeap *A);
 
-int binHeap_isEmpty(dynamicArr *A);
+int binHeap_isEmpty(binaryHeap *A);
 
 int binHeap_lastLeafIndex(binaryHeap *A);
 
