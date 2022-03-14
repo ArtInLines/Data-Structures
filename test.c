@@ -112,4 +112,6 @@ void test_binHeap() {
 
 void main() {
     test_dynArr();
+    printf("\n\n");
+    test_binHeap();
 }
