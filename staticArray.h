@@ -30,7 +30,7 @@ int statArr_contains(staticArr *arr, element el);
 
 element *statArr_find(staticArr *arr, int (*fn) (element, int, staticArr*));
 
-int statArr_findIndex(staticArr *arr, element el, int (*fn) (element, int, staticArr*));
+int statArr_findIndex(staticArr *arr, int (*fn) (element, int, staticArr*));
 
 int statArr_findIndexOf(staticArr *arr, element el);
 

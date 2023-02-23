@@ -72,7 +72,7 @@ element *statArr_find(staticArr *arr, int (*fn) (element, int, staticArr*)) {
     return NULL;
 }
 
-int statArr_findIndex(staticArr *arr, element el, int (*fn) (element, int, staticArr*)) {
+int statArr_findIndex(staticArr *arr, int (*fn) (element, int, staticArr*)) {
     for (int i = 0; i< arr->len; i++) {
         if (fn(arr->list[i], i, arr)) return i;
     }

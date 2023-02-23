@@ -71,12 +71,12 @@ dynamicArr *dynArr_insert(dynamicArr **A, int index, element el) {
         *A = dynArr_new(arr->capacity * 2);
         arr = *A;
         arr->len = tmp->len+1;
-        
+
         int i;
         for (i = tmp->len; i > index; i--) arr->list[i] = tmp->list[i-1];
         arr->list[index] = el;
         for (i = index-1; i >= 0; i--) arr->list[i] = tmp->list[i];
-        
+
         dynArr_free(tmp);
         return arr;
     }
@@ -156,13 +156,13 @@ int dynArr_stringifyCapacity(dynamicArr *arr) {
 int dynArr_stringify(dynamicArr *arr, char *s) {
     int i, formatVal, capacity = dynArr_stringifyCapacity(arr);
     char elS[10];
-    
-    El_stringify(dynArr_getRef(arr, 0), s);
-    
+
+    El_stringify(&arr->list[0], s);
+
     for (i = 1; i < arr->len; i++) {
-        El_stringify(dynArr_getRef(arr, i), elS);
+        El_stringify(&arr->list[i], elS);
         formatVal = sprintf(s, "%s, %s", s, elS);
     }
-    
+
     return formatVal;
 }

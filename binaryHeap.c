@@ -106,9 +106,9 @@ int binHeap_siftdown(binaryHeap **A, int index) {
     left = binHeap_getLeftChildIndex(index);
     if (left > lastIndex) return -2; // Only need to check for left child, because right child can't exist without left child
     right = binHeap_getRightChildIndex(index);
-    childIndex = left; 
+    childIndex = left;
     if (right <= lastIndex) childIndex = El_lte(&(*A)->list[left], &(*A)->list[right]) ? left : right;
-    
+
     if (El_lte(&(*A)->list[index], &(*A)->list[childIndex])) return -1;
     binHeap_switchPositions(*A, index, childIndex);
     return childIndex;
@@ -166,11 +166,11 @@ int binHeap_stringify(binaryHeap *A, char *s) {
     char elStr[10];
     s[0] = '\0'; // Reloads the String, effectively ignoring all data stored there before
     int i = 0, width = 1, widthStartIndex = 0, formatVal;
-    
+
     while (i < A->len) {
         El_stringify(dynArr_getRef(A, i), elStr);
         formatVal = sprintf(s, "%s%s ", s, elStr);
-        
+
         i++;
         if (i >= width + widthStartIndex) {
             widthStartIndex = i;
