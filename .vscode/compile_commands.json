@@ -1,0 +1,32 @@
+[
+    {
+        "command": "gcc -Wall -Wextra -std=c11 -pedantic -g test.c staticArray.c dynamicArray.c binaryHeap.c -o test\r",
+        "directory": "c:/Users/Administrator/Documents/Programming/data-structures",
+        "file": "c:\\Users\\Administrator\\Documents\\Programming\\data-structures\\test.c"
+    },
+    {
+        "command": "gcc -Wall -Wextra -std=c11 -pedantic -g test.c element.c util.c staticArray.c dynamicArray.c binaryHeap.c -o test\r",
+        "directory": "c:/Users/Administrator/Documents/Programming/data-structures",
+        "file": "c:\\Users\\Administrator\\Documents\\Programming\\data-structures\\element.c"
+    },
+    {
+        "command": "gcc -Wall -Wextra -std=c11 -pedantic -g test.c util.c staticArray.c dynamicArray.c binaryHeap.c -o test\r",
+        "directory": "c:/Users/Administrator/Documents/Programming/data-structures",
+        "file": "c:\\Users\\Administrator\\Documents\\Programming\\data-structures\\util.c"
+    },
+    {
+        "command": "gcc -Wall -Wextra -std=c11 -pedantic -g test.c staticArray.c dynamicArray.c binaryHeap.c -o test\r",
+        "directory": "c:/Users/Administrator/Documents/Programming/data-structures",
+        "file": "c:\\Users\\Administrator\\Documents\\Programming\\data-structures\\staticArray.c"
+    },
+    {
+        "command": "gcc -Wall -Wextra -std=c11 -pedantic -g test.c staticArray.c dynamicArray.c binaryHeap.c -o test\r",
+        "directory": "c:/Users/Administrator/Documents/Programming/data-structures",
+        "file": "c:\\Users\\Administrator\\Documents\\Programming\\data-structures\\dynamicArray.c"
+    },
+    {
+        "command": "gcc -Wall -Wextra -std=c11 -pedantic -g test.c staticArray.c dynamicArray.c binaryHeap.c -o test\r",
+        "directory": "c:/Users/Administrator/Documents/Programming/data-structures",
+        "file": "c:\\Users\\Administrator\\Documents\\Programming\\data-structures\\binaryHeap.c"
+    }
+]
